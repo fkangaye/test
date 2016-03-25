@@ -1,0 +1,78 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<dom-module id="pd-drawer">
+    <template>
+        <div id="drawer" class$="{{mainClass}}"></div>
+
+    </template>
+</dom-module>
+<script>
+    Polymer({
+        is: "pd-drawer",
+        properties: {
+            leftLocked: {
+                type: Boolean,
+                value: true
+            },
+            leftShow: {
+                type: Boolean,
+                value: false
+            },
+            rightLocked: {
+                type: Boolean,
+                value: true
+            },
+            rightShow: {
+                type: Boolean,
+                value: false
+            },
+            mobileMode: {
+                type: Boolean,
+                value: false
+            },
+            tableMode: {
+                type: Boolean,
+                value: false
+            },
+            pcMode: {
+                type: Boolean,
+                value: false
+            },
+            mainClass: {
+                type: String,
+                computed: '_computeClasses(leftShow, rightShow, rightLocked, leftLocked, mobileMode, tableMode, pcMode)'
+            },
+            drawerClasses: {
+                type: String,
+                value: "",
+                reflectToAttribute: true,
+                notify: true
+            }
+        },
+        _computeClasses: function (leftShow, rightShow, rightLocked, leftLocked, mobileMode, tableMode, pcMode){
+            var classStr = [];
+            if(leftLocked){
+                classStr.push('left-locked');
+            }
+            if(rightLocked){
+                classStr.push('right-locked');
+            }
+            if(leftShow){
+                classStr.push('left-show');
+            }
+            if(rightShow){
+                classStr.push('right-show');
+            }
+            if(mobileMode){
+                classStr.push('mobile-mode-main');
+            }
+            if(tableMode){
+                classStr.push('table-mode-main');
+            }
+            if(pcMode){
+                classStr.push('pc-mode-main');
+            }
+            this.drawerClasses = classStr.join(' ');
+            return classStr.join(' ');
+        }
+    });
+</script>ß
